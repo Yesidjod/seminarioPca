@@ -1,0 +1,7 @@
+{
+  "name": "redSocialReceta",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
