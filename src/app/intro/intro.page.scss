@@ -1,0 +1,41 @@
+swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  
+  swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  }
+  
+  .title {
+    font-size: 2rem;
+    color: #ff5722;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .image {
+    width: 70%;
+    max-width: 300px;
+    border-radius: 15px;
+    margin: 20px 0;
+  }
+  
+  .icon {
+    font-size: 3rem;
+    color: #4caf50;
+    margin: 15px 0;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.5;
+    margin: 10px 0;
+  }
