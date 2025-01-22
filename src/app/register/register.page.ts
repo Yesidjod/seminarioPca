@@ -15,8 +15,24 @@ export class RegisterPage implements OnInit {
     email: [
       { type: 'required', message: 'El correo es obligatorio' },
       { type: 'email', message: 'El correo no es válido' }
-    ]
-  }
+    ],
+    password: [
+      { type: 'required', message: 'La contraseña es obligatoria' },
+      { type: 'minlength', message: 'La contraseña debe tener al menos 6 caracteres' }
+    ],
+    name: [
+      { type: 'required', message: 'El nombre es obligatorio' },
+      { type: 'minlength', message: 'El nombre debe tener al menos 6 caracteres' }
+    ],
+    lastname: [
+      { type: 'required', message: 'El nombre es obligatorio' },
+      { type: 'minlength', message: 'El nombre debe tener al menos 6 caracteres' }
+    ],
+    username: [
+      { type: 'required', message: 'El nombre es obligatorio' },
+      { type: 'minlength', message: 'El nombre debe tener al menos 6 caracteres' }
+    ],
+  };
   constructor(
     private formBuilder: FormBuilder
   ) {
@@ -26,6 +42,18 @@ export class RegisterPage implements OnInit {
         Validators.email
       ])),
       password: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])),
+      name: new FormControl('', Validators.compose([
+        Validators.minLength(2),
+        Validators.required
+      ])),
+      lastname: new FormControl('', Validators.compose([
+        Validators.minLength(6),
+        Validators.required
+      ])),
+      username: new FormControl('', Validators.compose([
         Validators.minLength(6),
         Validators.required
       ])),
