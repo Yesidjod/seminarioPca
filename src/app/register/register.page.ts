@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { AuthService } from '../services/auth.service';
+import { NavController } from '@ionic/angular';
+import { register } from 'swiper/element';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +36,9 @@ export class RegisterPage implements OnInit {
     ],
   };
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private navCrtl: NavController
   ) {
     this.registerForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -58,13 +62,19 @@ export class RegisterPage implements OnInit {
         Validators.required
       ])),
     })
-   }
+  }
 
   ngOnInit() {
   }
 
-  registerUser(registerData: any){
-    console.log(registerData, "datos del registro")
+  registerUser(registerData: any) {
+    this.authService.register(registerData).then(res => {
+      console.log(res);
+      this.errorMesage = '';
+      this.navCrtl.navigateForward('/login');
+    }).catch(err => {
+      console.log(err);
+      this.errorMesage = err;
+    });
   }
-
 }
