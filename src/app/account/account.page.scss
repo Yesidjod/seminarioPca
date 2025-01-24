@@ -1,0 +1,48 @@
+.profile-container {
+    text-align: center;
+    margin-top: 20px;
+  
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--ion-color-primary);
+      margin: 0 auto 15px;
+    }
+  
+    h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--ion-color-dark);
+      margin-bottom: 5px;
+    }
+  
+    .username {
+      font-size: 1.2rem;
+      color: var(--ion-color-medium);
+      margin-bottom: 20px;
+    }
+  
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+  
+      .stat {
+        text-align: center;
+  
+        strong {
+          font-size: 1.4rem;
+          color: var(--ion-color-primary);
+          display: block;
+        }
+  
+        span {
+          font-size: 1rem;
+          color: var(--ion-color-medium);
+        }
+      }
+    }
+  }
+  

@@ -22,7 +22,7 @@ export class IntroPage implements OnInit {
 
     console.log('finish');
     this.storage.set('vi la intro', true);
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/menu/home');
   }
 }
 
