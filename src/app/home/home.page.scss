@@ -64,3 +64,10 @@ swiper-slide {
   display: block;
   margin: 0 auto;
 }
+ion-fab{
+  ion-fab-button{
+    --background: white;
+    --color: dark;
+  }
+}
+
