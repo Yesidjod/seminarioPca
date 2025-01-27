@@ -48,6 +48,8 @@
       </ng-container>
     </div>
     <ion-button type="submit" [disabled]="!loginForm.valid">Login</ion-button>
+    <p class="description">Aun no tienes cuenta?</p>
+    <ion-button (click)="registro()">Registrate</ion-button>
   </form>
 
   <p>{{errorMessage}}</p>

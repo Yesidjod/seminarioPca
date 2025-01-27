@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from '../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -28,6 +29,7 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder, 
     private authService: AuthService,
     private navCtrl: NavController,
+    private router: Router,
     private storage: Storage) {
     this.loginForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -42,6 +44,10 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  registro(){
+    this.router.navigateByUrl('/register');
+  }
 
   loginUser(credentials: any) {
     this.authService.login(credentials).then((res:any) => {
