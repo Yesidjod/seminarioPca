@@ -5,6 +5,7 @@ import { PostService } from '../services/post.service';
 import { Storage } from '@ionic/storage-angular';
 import { ModalController } from '@ionic/angular';
 import { FormBuilder, FormGroup, FormControl, Validator, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 defineCustomElements(window);
 
 @Component({
@@ -20,7 +21,8 @@ export class AddPostModalPage implements OnInit {
     private formBuider: FormBuilder,
     private postService: PostService,
     private storage: Storage,
-    private modalController:ModalController
+    private modalController:ModalController,
+    private navController: NavController
   ) {
     this.addPostForm = this.formBuider.group({
       description: new FormControl('', Validators.required),
@@ -73,6 +75,10 @@ export class AddPostModalPage implements OnInit {
         console.log(error, 'error')
       }
     );
+  }
+
+  cancel() {
+    this.modalController.dismiss();
   }
 }  
 

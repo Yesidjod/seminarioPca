@@ -17,12 +17,12 @@
     </ion-item>
 
     <ion-footer>
-      <ion-button type="submit" [disabled]="!addPostForm.valid" expand="full">
+      <ion-button type="submit" [disabled]="!addPostForm.valid" >
         Publicar
+      </ion-button>
+      <ion-button  (click)="cancel()">
+        Cancelar
       </ion-button>
     </ion-footer>
   </form>
-
-
-
 </ion-content>

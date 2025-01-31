@@ -34,6 +34,11 @@ export class MenuPage implements OnInit {
     this.closeMenu();
   }
 
+  searchUser(){
+    this.navCrtl.navigateRoot("/menu/search-users");
+    this.closeMenu();
+  }
+
   log_out(){
     this.storage.remove("isUserLoggedIn");
     this.navCrtl.navigateRoot("/login");

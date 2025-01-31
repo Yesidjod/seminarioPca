@@ -76,4 +76,25 @@ export class UserService {
       )
     });
   }
+
+  UnfollowUser(user_id: any, followee_id:any){
+    const follow_params = {
+      followee_id: followee_id
+    }
+    return new Promise((accept, reject) => {
+      this.http.post(`${this.urlServer}/unfollow/${user_id}`, follow_params, this.httpHeaders).subscribe(
+        (data: any)=>{
+            accept(data);
+        },
+        (error)=>{
+          console.log(error, 'error');
+          if (error.status==500){
+            reject('Error por favor intenta mas tarde');
+          }else{
+            reject('Error al seguir al usuario');
+          }
+        }
+      )
+    });
+  }
 }

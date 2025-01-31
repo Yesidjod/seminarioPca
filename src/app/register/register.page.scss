@@ -55,12 +55,6 @@ ion-content {
     text-align: center;
   }
   
-  @media (max-width: 768px) {
-    ion-content {
-      --padding-top: 15px;
-      --padding-start: 15px;
-      --padding-end: 15px;
-    }
   
     ion-button {
       font-size: 14px;
@@ -70,5 +64,4 @@ ion-content {
       --inner-padding-start: 8px;
       --inner-padding-end: 8px;
     }
-  }
   

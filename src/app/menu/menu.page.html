@@ -11,15 +11,20 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-item (click)="home()">
-        <ion-icon name="home-outline"></ion-icon>Inicio
-      </ion-item>
-      <ion-item (click)="account()">
-        <ion-icon name="person-circle-outline"></ion-icon>Cuenta
-      </ion-item>
-      <ion-item (click)="log_out()">
-        <ion-icon name="log-out-outline"></ion-icon>Cerrar Sesión
-      </ion-item>
+      <ion-list>
+        <ion-item (click)="home()">
+          <ion-icon name="home-outline"></ion-icon> Inicio
+        </ion-item>
+        <ion-item (click)="account()">
+          <ion-icon name="person-circle-outline"></ion-icon> Perfil
+        </ion-item>
+        <ion-item (click)="searchUser()">
+          <ion-icon name="search-outline"></ion-icon> Buscar Usuario
+        </ion-item>
+        <ion-item (click)="log_out()">
+          <ion-icon name="log-out-outline"></ion-icon> Cerrar Sesión
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="content"></ion-router-outlet>

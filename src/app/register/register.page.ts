@@ -108,4 +108,7 @@ export class RegisterPage implements OnInit {
       });
     }
   }
+  cancelarRegistro(){
+    this.navCrtl.navigateRoot('/login');
+  }
 }

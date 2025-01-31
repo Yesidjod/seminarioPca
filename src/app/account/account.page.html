@@ -3,17 +3,25 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>{{user_data.name}} {{user_data.last_name}}</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <div class="profile-container">
-    <ion-avatar (click)="presentPhotoOptions()">
+    <ion-avatar class="profile-avatar" (click)="presentPhotoOptions()">
       <img [src]="user_data?.image ? user_data.image : 'assets/images/default-user.jpg'" alt="Imagen de perfil">
     </ion-avatar>
-    <h2>{{user_data.username}}</h2>
-    <p class="username">(Usuario)</p>
+    <h2>{{ user_data?.name }} {{ user_data?.last_name }}</h2>
+    <h4>{{ user_data?.username }}</h4>
+
+
+
+    <ion-button (click)="updateAccount()">
+      <ion-icon name="create-outline"></ion-icon>
+      <p>Actualizar Perfil</p>
+    </ion-button>
+
     <div class="stats">
       <div class="stat">
         <strong>{{user_data?.followers.length}}</strong>
@@ -25,7 +33,4 @@
       </div>
     </div>
   </div>
- 
-  
-  
 </ion-content>
