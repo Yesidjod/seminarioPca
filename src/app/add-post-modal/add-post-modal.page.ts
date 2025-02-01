@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { PostService } from '../services/post.service';
 import { Storage } from '@ionic/storage-angular';
-import { ModalController } from '@ionic/angular';
-import { FormBuilder, FormGroup, FormControl, Validator, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { ModalController, AlertController, NavController } from '@ionic/angular';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+
 defineCustomElements(window);
 
 @Component({
@@ -17,38 +17,67 @@ defineCustomElements(window);
 export class AddPostModalPage implements OnInit {
   post_image: any;
   addPostForm: FormGroup;
+
   constructor(
     private formBuider: FormBuilder,
     private postService: PostService,
     private storage: Storage,
-    private modalController:ModalController,
-    private navController: NavController
+    private modalController: ModalController,
+    private navController: NavController,
+    private alertController: AlertController
   ) {
     this.addPostForm = this.formBuider.group({
       description: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required)
-    })
+    });
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  async imgOptions() {
+    const alert = await this.alertController.create({
+      header: "Seleccione una opción",
+      message: "¿De dónde desea obtener la imagen?",
+      buttons: [
+        {
+          text: "Cámara",
+          handler: () => {
+            this.takePhoto(CameraSource.Camera);
+          }
+        },
+        {
+          text: "Galería",
+          handler: () => {
+            this.takePhoto(CameraSource.Photos);
+          }
+        },
+        {
+          text: "Cancelar",
+          role: "cancel",
+          handler: () => {
+            console.log('Cancelado');
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 
-  async uploadPhone() {
-    console.log('upload photo');
-    const uploadPhoto = await Camera.getPhoto({
+  async takePhoto(source: CameraSource) {
+    console.log('Tomando foto desde:', source);
+    const capturedPhoto = await Camera.getPhoto({
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Photos,
+      source: source,
       quality: 100
     });
-    this.post_image = uploadPhoto.dataUrl;
+    this.post_image = capturedPhoto.dataUrl;
     this.addPostForm.patchValue({
       image: this.post_image
     });
   }
 
   async addPost(post_data: any) {
-    console.log('add post');
-    console.log(post_data);
+    console.log('Agregando post:', post_data);
     const user = await this.storage.get('user');
     const post_param = {
       post: {
@@ -56,7 +85,7 @@ export class AddPostModalPage implements OnInit {
         image: post_data.image,
         user_id: user.id
       }
-    }
+    };
     console.log(post_param, 'post para enviar');
     this.postService.createPost(post_param).then(
       (data: any) => {
@@ -72,7 +101,7 @@ export class AddPostModalPage implements OnInit {
         this.modalController.dismiss();
       },
       (error) => {
-        console.log(error, 'error')
+        console.log(error, 'error');
       }
     );
   }
@@ -80,6 +109,5 @@ export class AddPostModalPage implements OnInit {
   cancel() {
     this.modalController.dismiss();
   }
-}  
-
+}
 

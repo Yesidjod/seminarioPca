@@ -1,28 +1,33 @@
-<ion-header>
+<ion-header> 
   <ion-toolbar>
     <ion-title>Crear Nuevo Post</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <form [formGroup]="addPostForm" (ngSubmit)="addPost(addPostForm.value)">
-    <div (click)="uploadPhone()">
+    <div (click)="imgOptions()">
       <img [src]="post_image ? post_image : '../assets/images/place-holder.jpeg'" formControlName="image" />
-    <p *ngIf="!post_image">Haz click para subir una imagen</p>
+      <p *ngIf="!post_image">Haz click para subir una imagen</p>
     </div>
 
     <ion-item>
-      <ion-textarea label="Descripcion del post" labelPlacement="floating" placeholder="¿Que estas pensando?" formControlName="description"></ion-textarea>
+      <ion-textarea
+        label="Descripcion del post"
+        labelPlacement="floating"
+        placeholder="¿Que estas pensando?"
+        formControlName="description">
+      </ion-textarea>
     </ion-item>
 
     <ion-footer>
-      <ion-button type="submit" [disabled]="!addPostForm.valid" >
+      <ion-button type="submit" [disabled]="!addPostForm.valid">
         Publicar
       </ion-button>
-      <ion-button  (click)="cancel()">
+      <ion-button (click)="cancel()">
         Cancelar
       </ion-button>
     </ion-footer>
   </form>
 </ion-content>
+
